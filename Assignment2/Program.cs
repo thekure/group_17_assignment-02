@@ -1,4 +1,6 @@
-﻿foreach (var wizard in WizardCollection.Create())
+﻿
+
+foreach (var wizard in WizardCollection.Create())
 {
     Console.WriteLine(wizard);
 }
