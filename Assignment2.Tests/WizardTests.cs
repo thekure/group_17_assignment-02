@@ -3,11 +3,11 @@ namespace Assignment2.Tests;
 public class WizardTests
 {
     [Fact]
-    public void WizardCollection_contains_2_wizards()
+    public void WizardCollection_contains_12_wizards()
     {
         var wizards = WizardCollection.Create();
 
-        Assert.Equal(2, wizards.Count());
+        Assert.Equal(12, wizards.Count());
     }
 
     [Theory]
