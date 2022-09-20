@@ -15,7 +15,16 @@ public class Queries
         return rowlingWizards;
     }
 
-    public static int GetFirstSithlordWithExtensions(WizardCollection wizards) => throw new NotImplementedException();
+    public static int? GetFirstSithlordWithExtensions(WizardCollection wizards)
+    {
+       return wizards.Where(wizard => wizard.Name.StartsWith("Darth")).MinBy(wizard => wizard.Year)?.Year;
+    }
 
-    public static int GetFirstSithlordWithLinqQuery(WizardCollection wizards) => throw new NotImplementedException();
+    public static int? GetFirstSithlordWithLinqQuery(WizardCollection wizards)
+    {
+        var firstSithLordYear = (from wiz in wizards
+                                where wiz.Name.StartsWith("Darth")
+                                select wiz.Year).Min();
+        return firstSithLordYear;
+    }
 }
