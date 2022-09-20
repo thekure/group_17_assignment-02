@@ -42,4 +42,25 @@ public class Queries
                                       select (wiz.Name, wiz.Year);
         return uniqueHarryPotterTuples;
     }
+
+    public static IEnumerable<string> GetWizardNamesGroupedByCreatorOrderedByReverseCreatorNameAndThenWizardNameWithExtensions(WizardCollection wizards)
+    {
+        return wizards.GroupBy(wizard => wizard.Creator)
+                      .OrderByDescending(group => group.Key)
+                      .SelectMany(group => group.OrderBy(wiz => wiz.Name)
+                                                .Select(wiz => wiz.Name)
+                                  );
+    }
+
+    public static IEnumerable<string> GetWizardNamesGroupedByCreatorOrderedByReverseCreatorNameAndThenWizardNameWithLinqQuery(WizardCollection wizards)
+    {
+        var orderedWizards = from wiz in wizards
+                             orderby wiz.Name
+                             group wiz by wiz.Creator into creatorGroups
+                             orderby creatorGroups.Key descending
+                             from wiz in creatorGroups
+                             select wiz.Name;
+
+        return orderedWizards;
+    }
 }
