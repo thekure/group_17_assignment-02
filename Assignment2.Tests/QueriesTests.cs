@@ -28,6 +28,19 @@ public class QueriesTests
         resultFromExtensions.Should().Be(resultFromLinq);
     }
 
+    [Fact]
+    public void Get_unique_harry_potter_wizards_returns_harry_potter_1997_dumbledore_1997_voldemort_1997()
+    {
+        var collection = WizardCollection.Create();
+        var expected = new List<(string, int)>(){("Harry Potter", 1997),("Dumbledore",1997),("Voldemort", 1997)};
+
+        var resultFromExtensions = Queries.GetUniqueHarryPotterWizardsWithExtensions(collection);
+        var resultFromLinq = Queries.GetUniqueHarryPotterWizardsWithLinqQuery(collection);        
+
+        resultFromExtensions.Should().BeEquivalentTo(expected);
+        resultFromLinq.Should().BeEquivalentTo(expected);
+        resultFromExtensions.Should().BeEquivalentTo(resultFromLinq);
+    } 
     
 }
 
