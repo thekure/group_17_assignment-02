@@ -30,7 +30,16 @@ public class Queries
         return firstSithLordYear;
     }
 
-    public static IEnumerable<(string name, int year)> GetUniqueHarryPotterWizardsWithExtensions(WizardCollection wizard) => throw new NotImplementedException();
+    public static IEnumerable<(string name, int? year)> GetUniqueHarryPotterWizardsWithExtensions(WizardCollection wizards)
+    {
+        return wizards.Where(wizard => wizard.Medium == "Harry Potter").Select(wizard => (wizard.Name, wizard.Year));
+    }
 
-    public static IEnumerable<(string name, int year)> GetUniqueHarryPotterWizardsWithLinqQuery(WizardCollection wizard) => throw new NotImplementedException();
+    public static IEnumerable<(string name, int? year)> GetUniqueHarryPotterWizardsWithLinqQuery(WizardCollection wizards)
+    {
+        var uniqueHarryPotterTuples = from wiz in wizards
+                                      where wiz.Medium == "Harry Potter"
+                                      select (wiz.Name, wiz.Year);
+        return uniqueHarryPotterTuples;
+    }
 }
