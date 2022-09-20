@@ -33,7 +33,20 @@ public class DelegatesTests
 
         result.Should().Be(20);
     }
+
+    [Fact]
+    public void CompareStrInt_when_given_0042_42_returns_true()
+    {
+        CompareStrInt compr = (string str, int val) => Int32.Parse(str) == val;
+        var strVal = "  0042";
+        var intVal = 42;
+
+        var result = compr(strVal, intVal);
+
+        result.Should().Be(true);
+    }
 }
 
 delegate void Reverse (String toBeReversed);
 delegate int Product (int one, int other);
+delegate bool CompareStrInt(string numericString, int val);
