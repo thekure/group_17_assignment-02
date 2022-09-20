@@ -16,6 +16,18 @@ public class QueriesTests
         resultFromExtensions.Should().BeEquivalentTo(resultFromLinq);
     }
 
+    [Fact]
+    public void Get_First_Sithlord_returns_1977(){
+        var collection = WizardCollection.Create();
+
+        var resultFromExtensions = Queries.GetFirstSithlordWithExtensions(collection);
+        var resultFromLinq = Queries.GetFirstSithlordWithLinqQuery(collection);
+
+        resultFromExtensions.Should().Be(1977);
+        resultFromLinq.Should().Be(1977);
+        resultFromExtensions.Should().Be(resultFromLinq);
+    }
+
     
 }
 

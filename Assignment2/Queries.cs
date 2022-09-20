@@ -14,4 +14,8 @@ public class Queries
                              select wiz.Name; 
         return rowlingWizards;
     }
+
+    public static int GetFirstSithlordWithExtensions(WizardCollection wizards) => throw new NotImplementedException();
+
+    public static int GetFirstSithlordWithLinqQuery(WizardCollection wizards) => throw new NotImplementedException();
 }
