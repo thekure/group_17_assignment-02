@@ -9,7 +9,7 @@ public class DelegatesTests
         using var writer = new StringWriter();
         var str = "teststr";
         Console.SetOut(writer);
-        Reverse rev = (string str) => {
+        Action<string> rev = (string str) => {
             foreach (var c in str.Reverse())
             {
                 Console.Write(c);
@@ -25,7 +25,7 @@ public class DelegatesTests
     [Fact]
     public void Product_when_given_4_5_returns_20()
     {
-        Product p = (int one, int other) => one*other;
+        Func<int,int,int> p = (int one, int other) => one*other;
         int one = 4;
         int other = 5;
 
@@ -37,7 +37,7 @@ public class DelegatesTests
     [Fact]
     public void CompareStrInt_when_given_0042_42_returns_true()
     {
-        CompareStrInt compr = (string str, int val) => Int32.Parse(str) == val;
+        Func<string, int, bool> compr = (string str, int val) => Int32.Parse(str) == val;
         var strVal = "  0042";
         var intVal = 42;
 
@@ -46,7 +46,3 @@ public class DelegatesTests
         result.Should().Be(true);
     }
 }
-
-delegate void Reverse (String toBeReversed);
-delegate int Product (int one, int other);
-delegate bool CompareStrInt(string numericString, int val);
